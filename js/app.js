@@ -25,6 +25,8 @@ function App(config)
           return setTimeout(callback, 10);
         };
 
+    // add component to array
+    // Each element must have render & update method
 	var add = function(component) {
 		components.push(component);
 	}
@@ -33,6 +35,7 @@ function App(config)
 		var time = new Date(),
 			length = components.length;
 
+		// update each component
 		for(var i = 0; i < length; i++) {
 			components[i].update(time);
 		}
@@ -40,6 +43,7 @@ function App(config)
 
 	var renderApp = function(){
 
+		// clear canvas
 		context.clearRect(0, 0, canvas.width, canvas.height);
     
 		var length = components.length;
@@ -48,6 +52,7 @@ function App(config)
 			components[i].render(context);
 		}
 
+		// run renderApp again (loop)
 		requestAnimationFrame(renderApp);
 	}
 
@@ -56,6 +61,9 @@ function App(config)
 		config: config
 	}
 
+	/**
+	 * Run app
+	 */
 	this.run = function() {
 		canvas = document.createElement('canvas');
 
@@ -64,16 +72,19 @@ function App(config)
 
 		context = canvas.getContext("2d");
 
+		// Update app every 80 ms
 		updateInterval = setInterval(updateApp, 80);
 
+		// run rendering
 		renderApp();
 	}
 
+	// append canvas to elemet
 	this.appendTo = function(el) {
-		console.log(canvas);
 		el.appendChild(canvas);
 	}
 
+	// export function create new Game
 	this.createGame = function(){
 		game = new Game(self);
 		game.initialize();

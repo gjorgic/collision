@@ -43,6 +43,8 @@ function Character(app){
 	}.bind(this);
 
 	this.initialize = function() {
+
+		// add this object to application elements array
 		app.add(this);
 
 		window.onkeydown = keyEventHandler;

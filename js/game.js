@@ -4,6 +4,8 @@ function Game(app)
 	var level;
 
 	this.initialize = function() {
+
+		// Add this object to application elements array
 		app.add(this);
 
 		character = new Character(app, this);
